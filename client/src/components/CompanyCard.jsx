@@ -29,7 +29,6 @@ const CompanyCard = () => {
     const [addFounderMode, setAddFounderMode] = useState(0)
     const [newFounder, setNewFounder] = useState("")
     const [founderPosition, setFounderPosition] = useState("")
-    console.log('SHOWFORM', showForm)
 
 
 
@@ -41,22 +40,11 @@ const CompanyCard = () => {
         setOpen(false);
     }
 
-    // const resetStateToDefault = () => {
-    //     setName("")
-    //     setState("")
-    //     setCity("")
-    //     setFoundedDate("")
-    //     setDescription("")
-    // }
-
     const openEditMode = (value) => {
         setEditMode(value)
-        console.log('VALUE', value)
         let editingItem = companyList.find(company => {
-            console.log('COMPANY', company)
             return company.id === value;
         })
-        console.log('EDITING ITEM', editingItem)
 
         setNewName(editingItem.name)
         setNewState(editingItem.state)
@@ -73,7 +61,6 @@ const CompanyCard = () => {
     }
 
     const openFounderTextField = (value) => {
-        console.log('OPEN TEXT FIELD', value)
         setAddFounderMode(value)
 
     }
@@ -85,7 +72,6 @@ const CompanyCard = () => {
     }
 
     const addCompany = () => {
-        console.log('HELLO', { name, state, city, foundedDate, description })
         const defaultState = "";
         setShowForm(true);
         axios.post('http://localhost:3001/create', {
@@ -97,7 +83,6 @@ const CompanyCard = () => {
             newFounder: "",
             founderPosition: ""
         }).then((result) => {
-            console.log('RESULT', result)
             setCompanyList([
                 ...companyList,
                 {
@@ -118,10 +103,7 @@ const CompanyCard = () => {
     }
 
     const addFounder = (id) => {
-        console.log('ID', id)
-        console.log('NEWFOUNDER', { newFounder, founderPosition })
         axios.put(`http://localhost:3001/addFounder`, { newFounder: newFounder, founderPosition: founderPosition, id: id }).then((response) => {
-            console.log('RESPONSE', response)
             setCompanyList(
                 companyList.map((val) => {
 
@@ -142,26 +124,20 @@ const CompanyCard = () => {
         })
         setAddFounderMode(0)
         setOpen(false)
-        console.log('COMPANY LIST', companyList)
 
     }
 
     const getCompanies = () => {
         axios.get('http://localhost:3001/companies').then((response) => {
-            console.log('SUCCESS', response)
             setCompanyList(response.data)
 
         })
     }
 
     const updateCompany = (id) => { // Try and make it so you can update the whole card with this one function
-        console.log('UPDATE COMPANY FUNCTION', id)
-        console.log('STATE', { name, state, city, foundedDate, description })
-        console.log('NEW STATE', { newName, newState, newCity, newFoundedDate, newDescription })
         axios.put('http://localhost:3001/update', { name: newName, state: newState, city: newCity, foundedDate: newFoundedDate, description: newDescription, newFounder: newFounder, founderPosition: founderPosition, id: id }).then((response) => {
             setCompanyList(
                 companyList.map((val) => {
-                    console.log('VAL UPDATE', val)
                     return val.id === id
                         ? {
                             id: val.id,
@@ -176,7 +152,6 @@ const CompanyCard = () => {
                         : val;
                 })
             )
-            console.log('COMPANY LIST UPDATE COMPANY', companyList)
             setEditMode(0)
             setOpen(false)
             setNewName("")
@@ -188,9 +163,7 @@ const CompanyCard = () => {
     }
 
     const deleteCompany = (id) => {
-        console.log('ID', id)
         axios.delete(`http://localhost:3001/delete/${id}`).then((response) => {
-            console.log('RESPONSE', response)
             setCompanyList(
                 companyList.filter((val) => {
                     return val.id !== id;
@@ -203,13 +176,10 @@ const CompanyCard = () => {
     const renderCompanies = () => {
         return (
             <div className="App">
-                {/* <CreateNewCompany /> */}
 
                 <div className="companies" title="companies-card">
                     <Button variant="outlined" color="primary" onClick={getCompanies}>Get List of Companies</Button>
                     {companyList.map((val, key) => {
-                        // console.log('VAL', val)
-                        // console.log('KEY', key)
                         return (
                             <Card className="company" >
                                 <div>
@@ -217,14 +187,6 @@ const CompanyCard = () => {
                                     <h3>City: {val.city}</h3>
                                     <h3>State: {val.state}</h3>
                                     <h3>Description: {val.description}</h3>
-                                    {/* <h3>Founders: {val.founder ? val.founder :
-                                        <div>
-                                            <input type="text" onChange={(event) => {
-                                                setFounder(event.target.value)
-                                            }} />
-                                            <Button variant="outlined" size="small" onClick={() => (addFounder(val.id))}>Add Founder</Button>
-                                        </div>
-                                    }</h3> */}
 
                                 </div>
                                 <Button onClick={() => handleClickOpen(val.id)}>More...</Button>
@@ -278,23 +240,18 @@ const CompanyCard = () => {
 
                                         {editMode ? (<div className="dialog-content">
                                             <TextField className="title" variant="outlined" label="Company Name" defaultValue={val.name} onChange={(event) => {
-                                                console.log('EVENT UPDATE', event.target.value);
                                                 setNewName(event.target.value ? event.target.value : val.name)
                                             }} />
                                             <div className="founding-date-location">
                                                 <TextField className="founded-date" variant="outlined" label="Founded Date" defaultValue={val.foundedDate} onChange={(event) => {
-                                                    console.log('EVENT UPDATE', event.target.value);
                                                     setNewFoundedDate(event.target.value ? event.target.value : val.foundedDate)
                                                 }} /> <TextField className="location" variant="outlined" label="State" defaultValue={val.state} onChange={(event) => {
-                                                    console.log('EVENT UPDATE', event.target.value);
                                                     setNewState(event.target.value ? event.target.value : val.state)
                                                 }} /> <TextField className="location" variant="outlined" label="City" defaultValue={val.city} onChange={(event) => {
-                                                    console.log('EVENT UPDATE', event.target.value);
                                                     setNewCity(event.target.value ? event.target.value : val.city)
                                                 }} />
                                             </div>
                                             <TextField className="description" variant="outlined" label="Description" defaultValue={val.description} fullWidth onChange={(event) => {
-                                                console.log('EVENT UPDATE', event.target.value);
                                                 setNewDescription(event.target.value ? event.target.value : val.description)
                                             }} />
                                             {val.newFounder === "" ? null
@@ -318,16 +275,7 @@ const CompanyCard = () => {
 
                                     </DialogContent>
                                 </Dialog>
-                                {/* <div>
-                                    {" "}
-                                    <input type="text" onChange={(event) => {
-                                        setNewName(event.target.value)
-                                    }}
-                                    />
-                                    <Button variant="outlined" color="primary" size="small" onClick={() => (updateCompany(val.id))}>Edit</Button>
 
-                                    <Button variant="contained" color="secondary" size="small" onClick={() => (deleteCompany(val.id))}>Delete</Button>
-                                </div> */}
                             </Card>
 
                         )
@@ -337,7 +285,6 @@ const CompanyCard = () => {
                     showForm ? null : (<Card className="new-company-container">
                         <form className="form">
                             <TextField label="Company Name" variant="outlined" fullWidth required onChange={(event) => {
-                                console.log('EVENT', event.target.value)
                                 setName(event.target.value);
                             }} />
                             <TextField label="State" variant="outlined" required onChange={(event) => {

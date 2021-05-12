@@ -36,29 +36,11 @@ app.post('/create', (req, res) => {
     )
 })
 
-// app.post('/addFounder/:id', (req, res) => {
-//     console.log('ADD FOUNDER', req.body)
-//     const id = req.params.id
-//     const newFounder = req.body.newFounder
-//     const founderPosition = req.body.founderPosition
-
-//     db.query('INSERT INTO companyList (newFounder = ?, founderPosition = ?) WHERE id = ? VALUES (?,?,?)',
-//         [newFounder, founderPosition, id],
-//         (err, result) => {
-//             if (err) {
-//                 console.log('ERR', err)
-//             } else {
-//                 res.send(result)
-//             }
-//         })
-// })
-
 app.put('/addFounder', (req, res) => {
     console.log('ADD FOUNDER', req.body)
     const id = req.body.id
     const newFounder = req.body.newFounder
     const founderPosition = req.body.founderPosition
-    // db.query('ALTER TABLE company ADD founder varchar(255)')
     db.query('UPDATE companyList SET newFounder = ?, founderPosition = ? WHERE id = ?', [newFounder, founderPosition, id], (err, result) => {
         if (err) {
             console.log('ERR', err)
