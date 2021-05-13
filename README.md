@@ -1,3 +1,11 @@
+# DEPLOYMENT URL
+
+This project is deployed with AWS Amplify and can be reached at [URL](https://kellerproject.d1le9v6n9t7cl5.amplifyapp.com/)
+
+# Project approach
+
+This project was not only way to display my ability to build a Full Stack application with React and Node while showing how I approach problems but also a way to show myself with some honest realism where I am and where I need to get to. Going into this project I had worked in a full stack MERN application at my first developer job in a mostly frontend capacity a couple years ago. I went back into React learning some new things and using any resource I could find to help me set up my application. I tried to keep things simple since I was re-familiarizing myself with React again and decided to keep the main functionality within the main component so I could see everything connecting. I wanted to try useState hooks which had not come out when I was at my previous job. Using what I could remember from my time working in React and learning new ways to do things I was able to come up with ways to create solutions for the challenges. I was able to figure things out as I went along and if I could do it again I would have used more separate components to handle the individual functionalies such as adding a new company, or updating an existing company. I found that I was taking a little long to get sections done and didn't want to take up any more time so I'm submitting what I have now. With more time I would clean up the visuals for a smoother UX and cleaner UI. I would also like to write more tests. I honestly haven't much experience writing tests and need to get that up to par. I also think that I could greatly simplify things structure-wise by dividing up functionality into reusable components such as an Add Company component and Edit Company component. Overall this challenge helped me see where I can improve on my understanding of React, Node, relational databases, and overall fullstack architecture.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -13,6 +21,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+
+### 'nodemon'
+
+Runs the server to connect to the mySQL database
+Using the terminal navigate to 'server' folder
+npm install nodemon or yarn add nodemon
+Run command 'nodemon' to start server
 
 ### `yarn test`
 
@@ -68,3 +83,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
