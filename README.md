@@ -1,6 +1,6 @@
 # DEPLOYMENT URL
 
-This project is deployed with AWS Amplify and can be reached at [URL](https://kellerproject.d1le9v6n9t7cl5.amplifyapp.com/)
+This project is deployed with AWS Amplify and can be reached at this [URL](https://kellerproject.d1le9v6n9t7cl5.amplifyapp.com/)
 
 # Project approach
 
