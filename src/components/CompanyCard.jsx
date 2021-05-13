@@ -129,6 +129,7 @@ const CompanyCard = () => {
 
     const getCompanies = () => {
         axios.get('http://localhost:3001/companies').then((response) => {
+            console.log('RESPONSE', response.data)
             setCompanyList(response.data)
 
         })
@@ -177,11 +178,11 @@ const CompanyCard = () => {
         return (
             <div className="App">
 
-                <div className="companies" title="companies-card">
-                    <Button variant="outlined" color="primary" onClick={getCompanies}>Get List of Companies</Button>
+                <div className="companies" data-testid="companies-card-rendered">
+                    <Button variant="outlined" color="primary" onClick={getCompanies} inputprops={{ "data-testid": "get-companies-button" }} data-test="get-companies-button">Get List of Companies</Button>
                     {companyList.map((val, key) => {
                         return (
-                            <Card className="company" >
+                            <Card className="company" inputprops={{ "data-testid": "companies-card-rendered" }}>
                                 <div>
                                     <h3>Company Name: {val.name}</h3>
                                     <h3>City: {val.city}</h3>
@@ -209,7 +210,7 @@ const CompanyCard = () => {
                                                 :
                                                 <div className="founder-container">Founder
                                                     <div className="founders-section">
-                                                        {val.newFounder}&nbsp;&nbsp;{val.founderPosition}
+                                                        {val.newFounder}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;{val.founderPosition}
                                                     </div>
                                                 </div>
                                             }
@@ -297,7 +298,7 @@ const CompanyCard = () => {
                             <TextField label="Founded Date" variant="outlined" onChange={(event) => {
                                 setFoundedDate(event.target.value);
                             }} />
-                            <TextField label="Company Description" variant="outlined" fullWidth multiLine required onChange={(event) => {
+                            <TextField label="Company Description" variant="outlined" fullWidth required onChange={(event) => {
                                 setDescription(event.target.value);
                             }} />
 
