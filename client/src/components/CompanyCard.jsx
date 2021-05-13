@@ -204,15 +204,16 @@ const CompanyCard = () => {
                                             <div className="description">
                                                 {val.description}
                                             </div>
-                                            <div className="founder-container">Founder
-                                            {val.newFounder === "" || newFounder === "" ? null
-                                                    :
+
+                                            {val.newFounder === "" ? null
+                                                :
+                                                <div className="founder-container">Founder
                                                     <div className="founders-section">
                                                         {val.newFounder}&nbsp;&nbsp;{val.founderPosition}
                                                     </div>
-                                                }
+                                                </div>
+                                            }
 
-                                            </div>
                                             {addFounderMode ? (
                                                 <div>
                                                     <TextField variant="outlined" label="Founder" onChange={(event) => {
