@@ -24,10 +24,10 @@ You will also see any lint errors in the console.
 
 ### `nodemon`
 
-Runs the server to connect to the mySQL database
-Using the terminal navigate to 'server' folder
-npm install nodemon or yarn add nodemon
-Run command 'nodemon' to start server
+Runs the server to connect to the mySQL database.
+Using the terminal navigate to 'server' folder.
+npm install nodemon or yarn add nodemon.
+Run command 'nodemon' to start server.
 
 ### `yarn test`
 
